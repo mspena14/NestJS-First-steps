@@ -49,7 +49,8 @@
 
 - **Preguntas**:
    1. ¿Cómo impacta el manejo adecuado de excepciones en la experiencia del usuario y en la seguridad de la aplicación?
-   R// 
+   R// Impacta en gran manera porque nos permite generar los mensajes correctos por cada tipo de excepcion, mostrandole al usuario un mensaje que le permita identificar facilmente qué está fallando. Por otro lado a la hora de manejar la seguridad nos permite definir qué respuesta va a recibir el usuario, impidiendo que se tenga una respuesta con datos sensibles.
    2. ¿Por qué es importante tener un manejo centralizado de excepciones en una aplicación NestJS?
+   R// Nos permite manjear los errores de manera centralizada, mejora la experiencia del usuario, y aumentar la seguridad de la aplicación. Nos ayuda a crear una aplicación robusta, profesional y fácil de mantener.
 
 ---
