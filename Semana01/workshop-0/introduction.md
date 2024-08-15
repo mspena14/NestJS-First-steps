@@ -182,7 +182,7 @@ Imagina que has sido contratado por una fintech emergente que busca revolucionar
    1. ¿Qué ventajas tiene manejar la lógica de negocio en servicios en lugar de controladores?
    2. ¿Cómo se relaciona la inyección de dependencias con la modularidad y la capacidad de prueba de la aplicación?
 
----
+--- 
 
 ### **2. Aplicación de Decoradores y Pipes**
 
