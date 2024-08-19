@@ -238,13 +238,13 @@ class AdvancedMicrocredit extends Microcredit {
 
 Las subclases deben respetar el comportamiento de la clase base, garantizando que cualquier clase que sustituya a la clase base mantendrá el comportamiento esperado.
 
-4\. Principio I (Interface Segregation Principle) - Principio de Segregación de Interfaces
+### 4. Principio I (Interface Segregation Principle) - Principio de Segregación de Interfaces
 
-¿Qué es?
+***¿Qué es?***
 
 El principio de segregación de interfaces establece que los clientes no deben estar obligados a depender de interfaces que no utilizan. Esto significa que es mejor tener varias interfaces pequeñas y específicas en lugar de una sola interfaz grande y genérica.
 
-Sin ISP (No se debería hacer):
+#### Sin ISP (No se debería hacer):
 
 ```typescript
 
@@ -262,7 +262,7 @@ interface MicrocreditService {
 
 En este ejemplo, la interfaz MicrocreditService obliga a las clases que la implementan a depender de métodos que pueden no necesitar. Esto viola el principio de segregación de interfaces, ya que un servicio que solo gestiona microcréditos no debería tener que implementar la lógica de notificación o generación de informes.
 
-Con ISP (Así se debería hacer):
+#### Con ISP (Así se debería hacer):
 
 ```typescript
 
@@ -293,13 +293,13 @@ interface CreditReportService {
 
 Al dividir la interfaz en interfaces más pequeñas y específicas, las clases pueden implementar solo las interfaces que realmente necesitan, siguiendo así el principio de segregación de interfaces.
 
-5\. Principio D (Dependency Inversion Principle) - Principio de Inversión de Dependencias
+### 5. Principio D (Dependency Inversion Principle) - Principio de Inversión de Dependencias
 
-¿Qué es?
+***¿Qué es?***
 
 El principio de inversión de dependencias establece que los módulos de alto nivel no deberían depender de módulos de bajo nivel. Ambos deberían depender de abstracciones (interfaces o clases abstractas). Además, las abstracciones no deberían depender de detalles; los detalles (implementaciones concretas) deberían depender de abstracciones.
 
-Sin DIP (No se debería hacer):
+#### Sin DIP (No se debería hacer):
 
 ```typescript
 
@@ -321,7 +321,7 @@ export class MicrocreditService {
 
 En este ejemplo, la clase MicrocreditService depende directamente de la implementación concreta de UserRepository. Esto viola el principio de inversión de dependencias, ya que los módulos de alto nivel dependen de módulos de bajo nivel.
 
-Con DIP (Así se debería hacer):
+#### Con DIP (Así se debería hacer):
 
 ```typescript
 
