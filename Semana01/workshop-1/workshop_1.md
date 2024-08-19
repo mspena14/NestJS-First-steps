@@ -237,3 +237,140 @@ class AdvancedMicrocredit extends Microcredit {
 ```
 
 Las subclases deben respetar el comportamiento de la clase base, garantizando que cualquier clase que sustituya a la clase base mantendrá el comportamiento esperado.
+
+4\. Principio I (Interface Segregation Principle) - Principio de Segregación de Interfaces
+
+¿Qué es?
+
+El principio de segregación de interfaces establece que los clientes no deben estar obligados a depender de interfaces que no utilizan. Esto significa que es mejor tener varias interfaces pequeñas y específicas en lugar de una sola interfaz grande y genérica.
+
+Sin ISP (No se debería hacer):
+
+```typescript
+
+interface MicrocreditService {
+
+    applyForMicrocredit(userId: string, amount: number): Microcredit;
+
+    calculateInterestRate(userId: string): number;
+
+    notifyUser(userId: string, message: string): void;
+
+    generateCreditReport(userId: string): CreditReport;
+}
+```
+
+En este ejemplo, la interfaz MicrocreditService obliga a las clases que la implementan a depender de métodos que pueden no necesitar. Esto viola el principio de segregación de interfaces, ya que un servicio que solo gestiona microcréditos no debería tener que implementar la lógica de notificación o generación de informes.
+
+Con ISP (Así se debería hacer):
+
+```typescript
+
+interface MicrocreditApplicationService {
+
+    applyForMicrocredit(userId: string, amount: number): Microcredit;
+
+    }
+
+interface InterestRateCalculationService {
+
+    calculateInterestRate(userId: string): number;
+
+}
+
+interface NotificationService {
+
+    notifyUser(userId: string, message: string): void;
+
+}
+
+interface CreditReportService {
+
+    generateCreditReport(userId: string): CreditReport;
+
+}
+```
+
+Al dividir la interfaz en interfaces más pequeñas y específicas, las clases pueden implementar solo las interfaces que realmente necesitan, siguiendo así el principio de segregación de interfaces.
+
+5\. Principio D (Dependency Inversion Principle) - Principio de Inversión de Dependencias
+
+¿Qué es?
+
+El principio de inversión de dependencias establece que los módulos de alto nivel no deberían depender de módulos de bajo nivel. Ambos deberían depender de abstracciones (interfaces o clases abstractas). Además, las abstracciones no deberían depender de detalles; los detalles (implementaciones concretas) deberían depender de abstracciones.
+
+Sin DIP (No se debería hacer):
+
+```typescript
+
+@Injectable()
+
+export class MicrocreditService {
+
+    constructor(private readonly userRepository: UserRepository) {}
+
+    applyForMicrocredit(userId: string, amount: number): Microcredit {
+
+    const user = this.userRepository.findById(userId);
+
+    // Resto del código
+
+    }
+}
+```
+
+En este ejemplo, la clase MicrocreditService depende directamente de la implementación concreta de UserRepository. Esto viola el principio de inversión de dependencias, ya que los módulos de alto nivel dependen de módulos de bajo nivel.
+
+Con DIP (Así se debería hacer):
+
+```typescript
+
+interface UserRepository {
+
+    findById(userId: string): User;
+
+}
+
+@Injectable()
+
+export class MicrocreditService {
+
+    constructor(private readonly userRepository: UserRepository) {}
+
+    applyForMicrocredit(userId: string, amount: number): Microcredit {
+
+    const user = this.userRepository.findById(userId);
+
+    // Lógica para aplicar microcrédito
+
+    }
+
+}
+
+@Injectable()
+
+export class InMemoryUserRepository implements UserRepository {
+
+private users: Map<string, User> = new Map();
+
+findById(userId: string): User {
+
+    return this.users.get(userId);
+
+    }
+
+}
+
+@Injectable()
+
+export class DatabaseUserRepository implements UserRepository {
+
+    findById(userId: string): User {
+
+    // Lógica para obtener el usuario de la base de datos
+
+    }
+}
+```
+
+Al depender de una abstracción (UserRepository), MicrocreditService no está acoplado a ninguna implementación específica de UserRepository. Esto permite cambiar la implementación concreta sin afectar a MicrocreditService, siguiendo el principio de inversión de dependencias.
