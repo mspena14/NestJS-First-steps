@@ -4,33 +4,35 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UUID } from 'crypto';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>
-  ) { }
-  create(createUserDto: CreateUserDto) {
-    return this.userRepository.save(createUserDto);
+  constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) { }
+  async create(createUserDto: CreateUserDto) {
+    return await this.userRepository.save(createUserDto);
   }
 
-  findByEmail(email: string) {
-    return `This action returns a user by email "${email}"`;
+  async findByEmail(email: string) {
+    return await this.userRepository.findOne({where: { email }});
   }
-  findAll() {
-    return `This action returns all users`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findAll() {
+    return await this.userRepository.find();
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async findOne(id: UUID) {
+    return await this.userRepository.findOne({where: { id }});
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async update(id: UUID, user: UpdateUserDto) {
+    const userFound = await this.userRepository.findOne({where: {id}})
+    await this.userRepository.update(id, user);
+    const updatedUser = Object.assign(userFound, user)
+
+    return this.userRepository.save(updatedUser)
+  }
+
+  async remove(id: UUID) {
+    return await this.userRepository.delete(id);
   }
 }
