@@ -1,5 +1,7 @@
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
@@ -10,22 +12,50 @@ import { CommonModule } from './common/common.module';
 import { User } from './users/entities/user.entity';
 import { Order } from './orders/entities/order.entity';
 import { Product } from './products/entities/product.entity';
-
+import { JwtMiddleware } from './common/middlewares/jwt.middleware';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'bvrma7trmoyjkqhah8dr-mysql.services.clever-cloud.com',
-      port: 3306,
-      username: 'u8zgvxzls1g6hnuy',
-      password: 'RVufta9Hy3ik7Rzm6svV',
-      database: 'bvrma7trmoyjkqhah8dr',
-      entities: [__dirname + '/**/*.entity{.ts, .js}', User, Order, Product],
-      synchronize: true,
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
     }),
-    UsersModule, ProductsModule, OrdersModule, AuthModule, CommonModule],
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        type: 'mysql',
+        host: configService.get<string>('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get<string>('DB_USERNAME'),
+        password: configService.get<string>('DB_PASSWORD'),
+        database: configService.get<string>('DB_DATABASE'),
+        entities: [User, Order, Product],
+        synchronize: true, 
+      }),
+    }),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET'),
+        signOptions: { expiresIn: configService.get<string>('JWT_EXPIRES_IN') },
+      }),
+    }),
+    UsersModule,
+    ProductsModule,
+    OrdersModule,
+    AuthModule,
+    CommonModule,
+  ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(JwtMiddleware)
+      .exclude('/auth/register', '/auth/login')
+      .forRoutes('*');
+  }
+}

@@ -10,7 +10,7 @@ export class Product {
     @Column('varchar', {length:150})
     name: string;
 
-    @Column('decimal')
+    @Column('decimal', { precision: 10, scale: 2 })
     price: number;
 
     @Column('varchar', {length:255})
