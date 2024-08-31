@@ -1,73 +1,94 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+Usuarios de prueba 
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+{
+  "email": "user@example.com",
+  "password": "user123"
+}
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+{
+  "email": "admin@example.com",
+  "password": "admin123"
+}
+1. Usuarios
+Registrar un Usuario
+Método: POST
+Ruta: /auth/register
+Descripción: Registra un nuevo usuario.
+Cuerpo de Solicitud (Request Body):
+json
 
-## Description
+{
+  "email": "user@example.com",
+  "password": "userpassword"
+}
+Iniciar Sesión
+Método: POST
+Ruta: /auth/login
+Descripción: Inicia sesión y devuelve un token JWT.
+Cuerpo de Solicitud (Request Body):
+json
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+{
+  "email": "user@example.com",
+  "password": "userpassword"
+}
+2. Productos
+Obtener Todos los Productos
+Método: GET
+Ruta: /products
+Descripción: Obtiene la lista de todos los productos.
+Obtener un Producto por ID
+Método: GET
+Ruta: /products/:id
+Descripción: Obtiene un producto específico por su ID.
+Parámetro de Ruta (Path Parameter): id
+Crear un Producto
+Método: POST
+Ruta: /products
+Descripción: Crea un nuevo producto. Solo accesible por administradores.
+Cuerpo de Solicitud (Request Body):
+json
 
-## Installation
+{
+  "name": "Product Name",
+  "price": 19.99,
+  "description": "Product Description"
+}
+Actualizar un Producto
+Método: PUT
+Ruta: /products/:id
+Descripción: Actualiza un producto específico por su ID. Solo accesible por administradores.
+Cuerpo de Solicitud (Request Body):
+json
 
-```bash
-$ npm install
-```
+{
+  "name": "Updated Product Name",
+  "price": 29.99,
+  "description": "Updated Product Description"
+}
+Parámetro de Ruta (Path Parameter): id
+Eliminar un Producto
+Método: DELETE
+Ruta: /products/:id
+Descripción: Elimina un producto específico por su ID. Solo accesible por administradores.
+Parámetro de Ruta (Path Parameter): id
+3. Pedidos
+Crear un Pedido
+Método: POST
+Ruta: /orders
+Descripción: Crea un nuevo pedido. El totalPrice se calcula automáticamente.
+Cuerpo de Solicitud (Request Body):
+json
 
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+{
+  "products": [1, 2, 3] // IDs de los productos que se incluirán en el pedido
+}
+Obtener Todos los Pedidos
+Método: GET
+Ruta: /orders
+Descripción: Obtiene la lista de todos los pedidos.
+Obtener un Pedido por ID
+Método: GET
+Ruta: /orders/:id
+Descripción: Obtiene un pedido específico por su ID.
+Parámetro de Ruta (Path Parameter): id

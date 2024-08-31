@@ -1,26 +1,41 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { UsersService } from 'src/users/users.service';
+import { RegisterAuthDto } from './dto/register.dto';
+import { User } from 'src/users/entities/user.entity';
+import * as bcrypt from 'bcrypt';
+import { LoginAuthDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
+  constructor(
+    private readonly userService: UsersService,
+    private jwtService: JwtService
+  ) { }
+  async register(user: RegisterAuthDto) {
+    // const userFound = await this.userService.findByEmail(user.email);
+    const hashedPassword: string = await this.hashPassword(user.password);
+
+    return await this.userService.create({ ...user, password: hashedPassword });
   }
 
-  findAll() {
-    return `This action returns all auth`;
+  async login(user: LoginAuthDto) {
+    const userFound = await this.userService.findByEmail(user.email);
+    console.log(user.password, userFound.password);
+    
+    if (!(await bcrypt.compare(user.password, userFound.password))) throw new UnauthorizedException('Bad credentials');
+    
+    return this.generateToken(userFound);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
+  private async hashPassword(password: string): Promise<string> {
+    const salt: string = await bcrypt.genSalt(10);
+    return await bcrypt.hash(password, salt);
   }
 
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+  private generateToken(user: User): { accessToken: string } {
+    const payload = { id: user.id, email: user.email };
+    const token = this.jwtService.sign(payload);
+    return {accessToken: token}
   }
 }
