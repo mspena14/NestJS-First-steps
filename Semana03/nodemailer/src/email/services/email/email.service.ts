@@ -12,8 +12,7 @@ export class EmailService {
 
     async sendEmail(body: SendEmailDto) {
         try {
-            const { template, subjectEmail, sendTo } = body;
-            const params = body.params;
+            const { template, subjectEmail, sendTo, params } = body;
             const html = await this.templateAdapter.render(template, params);
             await this.emailProvider.sendEmail(subjectEmail, sendTo, html);
             return {
