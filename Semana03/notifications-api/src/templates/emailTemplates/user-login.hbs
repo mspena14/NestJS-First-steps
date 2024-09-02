@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido a {{companyName}}</title>
+    <title>Nuevo inicio de sesión en {{companyName}}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,22 +21,15 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         h2 {
-            color: #4CAF50;
+            color: #FF5733;
         }
         p {
             line-height: 1.6;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            padding: 8px 0;
-        }
         .btn {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #FF5733;
             color: #fff;
             text-decoration: none;
             border-radius: 4px;
@@ -53,14 +46,16 @@
 <body>
     <div class="container">
         <img src="https://static8.depositphotos.com/1009970/946/v/450/depositphotos_9460629-stock-illustration-house-logo.jpg" alt="Inmobiliaria Logo" style="max-width: 150px;">
-        <h2>¡Bienvenido, {{userName}}!</h2>
-        <p>Gracias por registrarte en <strong>{{companyName}}</strong>. Estamos emocionados de que te unas a nosotros.</p>
-        <p>Aquí están los detalles de tu cuenta:</p>
+        <h2>Nuevo inicio de sesión en tu cuenta</h2>
+        <p>Hola, {{userName}},</p>
+        <p>Detectamos un nuevo inicio de sesión en tu cuenta de <strong>{{companyName}}</strong> desde un dispositivo o ubicación desconocida.</p>
+        <p>Detalles del inicio de sesión:</p>
         <ul>
             <li><strong>Correo electrónico:</strong> {{userEmail}}</li>
-            <li><strong>Fecha de registro:</strong> {{registrationDate}}</li>
+            <li><strong>Fecha y hora:</strong> {{loginDate}}</li>
         </ul>
-        <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en ponerte en contacto con nuestro equipo de soporte.</p>
+        <p>Si no fuiste tú, te recomendamos proteger tu cuenta de inmediato.</p>
+        <p>Si tienes alguna pregunta o necesitas asistencia, no dudes en ponerte en contacto con nuestro equipo de soporte.</p>
         <p>Gracias por confiar en nosotros,</p>
         <p>El equipo de {{companyName}}</p>
         <footer class="footer">

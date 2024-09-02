@@ -1,8 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { CreateNotificationDto } from './dto/create-notification.dto';
-import { UpdateNotificationDto } from './dto/update-notification.dto';
+import { EmailsService } from 'src/emails/emails.service';
+import { SendEmailDto } from 'src/templates/dto/send-email.dto';
 
 @Injectable()
 export class NotificationsService {
+    constructor(private readonly emailService: EmailsService){}
+
+    async sendEmail(body: SendEmailDto){
+        return await this.emailService.sendEmail(body);
+    }
+
 
 }

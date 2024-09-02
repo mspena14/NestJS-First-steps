@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido a {{companyName}}</title>
+    <title>Nueva Solicitud de Visita para {{propertyName}}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,15 +53,18 @@
 <body>
     <div class="container">
         <img src="https://static8.depositphotos.com/1009970/946/v/450/depositphotos_9460629-stock-illustration-house-logo.jpg" alt="Inmobiliaria Logo" style="max-width: 150px;">
-        <h2>¡Bienvenido, {{userName}}!</h2>
-        <p>Gracias por registrarte en <strong>{{companyName}}</strong>. Estamos emocionados de que te unas a nosotros.</p>
-        <p>Aquí están los detalles de tu cuenta:</p>
+        <h2>Nueva Solicitud de Visita para {{propertyName}}</h2>
+        <p>Hola {{userName}},</p>
+        <p>Has recibido una nueva solicitud de visita para el inmueble <strong>{{propertyName}}</strong>.</p>
+        <p>Detalles de la solicitud:</p>
         <ul>
-            <li><strong>Correo electrónico:</strong> {{userEmail}}</li>
-            <li><strong>Fecha de registro:</strong> {{registrationDate}}</li>
+            <li><strong>Nombre del solicitante:</strong> {{applicantName}}</li>
+            <li><strong>Correo electrónico del solicitante:</strong> {{applicantEmail}}</li>
+            <li><strong>Fecha de la solicitud:</strong> {{requestDate}}</li>
+            <li><strong>Mensaje del solicitante: </strong>{{applicantMessage}}</li>
         </ul>
-        <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en ponerte en contacto con nuestro equipo de soporte.</p>
-        <p>Gracias por confiar en nosotros,</p>
+        <p>Por favor, revisa la solicitud y ponte en contacto con el solicitante para coordinar la visita.</p>
+        <p>Gracias por utilizar nuestro servicio,</p>
         <p>El equipo de {{companyName}}</p>
         <footer class="footer">
             <p>Sigue nuestras redes sociales:</p>

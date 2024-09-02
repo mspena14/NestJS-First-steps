@@ -10,7 +10,7 @@ export class EmailTemplateAdapter {
   constructor() {
     this.templatesDir = path.join(
       __dirname,
-      process.env.NODE_ENV === 'production' ? '../templates' : '../../src/templates/emailTemplates',
+      process.env.NODE_ENV === 'production' ? '../templates' : '../../../src/templates/emailTemplates',
     );
   }
 

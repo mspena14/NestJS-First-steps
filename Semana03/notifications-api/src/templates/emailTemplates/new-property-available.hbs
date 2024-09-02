@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Propiedad Disponible - {{companyName}}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 8px 0;
+        }
+
+        .property-info {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container">
+        <h2>¡Nueva Propiedad Disponible!</h2>
+        <p>Hola querido usuario,</p>
+        <p>Nos complace informarte que hemos añadido una nueva propiedad que podría interesarte:</p>
+        <div class="property-info">
+            <ul>
+                <li><strong>Nombre de la propiedad:</strong> {{propertyName}}</li>
+                <li><strong>Fecha de disponibilidad:</strong> {{availableFromDate}}</li>
+                <li><strong>Precio:</strong> {{price}}</li>
+                <li><strong>Descripción:</strong> {{propertyDescription}}</li>
+            </ul>
+            <p>Gracias por usar {{companyName}}.</p>
+            <p>El equipo de {{companyName}}.</p>
+        </div>
+
+        <footer class="footer">
+            <p>Sigue nuestras redes sociales:</p>
+            <a href="https://www.facebook.com/"><img
+                    src="https://cdn.icon-icons.com/icons2/2162/PNG/512/facebook_icon_133036.png" alt="Facebook"
+                    style="max-width: 24px;"></a>
+            <a href="https://x.com/"><img
+                    src="https://img.freepik.com/vector-gratis/nuevo-diseno-icono-x-logotipo-twitter-2023_1017-45418.jpg?size=338&ext=jpg&ga=GA1.1.1413502914.1725148800&semt=ais_hybrid"
+                    alt="X" style="max-width: 24px;"></a>
+            <a href="https://www.instagram.com/"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png"
+                    alt="Instagram" style="max-width: 24px;"></a>
+        </footer>
+    </section>
+</body>
+
+</html>

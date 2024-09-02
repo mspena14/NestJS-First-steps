@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido a {{companyName}}</title>
+    <title>Nuevo mensaje en {{companyName}}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,12 +26,12 @@
         p {
             line-height: 1.6;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            padding: 8px 0;
+        .message {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 5px solid #4CAF50;
+            margin: 20px 0;
+            border-radius: 4px;
         }
         .btn {
             display: inline-block;
@@ -53,15 +53,14 @@
 <body>
     <div class="container">
         <img src="https://static8.depositphotos.com/1009970/946/v/450/depositphotos_9460629-stock-illustration-house-logo.jpg" alt="Inmobiliaria Logo" style="max-width: 150px;">
-        <h2>¡Bienvenido, {{userName}}!</h2>
-        <p>Gracias por registrarte en <strong>{{companyName}}</strong>. Estamos emocionados de que te unas a nosotros.</p>
-        <p>Aquí están los detalles de tu cuenta:</p>
-        <ul>
-            <li><strong>Correo electrónico:</strong> {{userEmail}}</li>
-            <li><strong>Fecha de registro:</strong> {{registrationDate}}</li>
-        </ul>
-        <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en ponerte en contacto con nuestro equipo de soporte.</p>
-        <p>Gracias por confiar en nosotros,</p>
+        <h2>Tienes un nuevo mensaje en {{companyName}}</h2>
+        <p>Hola, {{userName}},</p>
+        <p>Has recibido un nuevo mensaje en el chat de la página web.</p>
+        <div class="message">
+            <p><strong>{{senderName}}:</strong></p>
+            <p>"{{messageContent}}"</p>
+        </div>
+        <p>Gracias por utilizar nuestro servicio,</p>
         <p>El equipo de {{companyName}}</p>
         <footer class="footer">
             <p>Sigue nuestras redes sociales:</p>

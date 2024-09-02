@@ -1,11 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes } from '@nestjs/common';
 import { NotificationsService } from './notifications.service';
-import { CreateNotificationDto } from './dto/create-notification.dto';
-import { UpdateNotificationDto } from './dto/update-notification.dto';
+import { ParamsValidationPipe } from 'src/common/pipes/params-validation.pipe';
+import { SendEmailDto } from 'src/templates/dto/send-email.dto';
+
 
 @Controller('notifications')
 export class NotificationsController {
-  constructor(private readonly notificationsService: NotificationsService) {}
+  constructor(private readonly notificationsService: NotificationsService) { }
 
-  
+  @Post('/sendEmail')
+  @UsePipes(ParamsValidationPipe)
+  async sendEmail(@Body() body: SendEmailDto) {
+    return await this.notificationsService.sendEmail(body);
+  }
+
+
 }
+

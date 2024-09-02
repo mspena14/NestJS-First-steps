@@ -71,3 +71,71 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+Planilla register email
+
+´´´
+{
+  "template": "user-login",
+  "sendTo": "marlono1naranjo@gmail.com",
+  "subjectEmail": "Nuevo inicio de sección",
+  "params": {
+    "userName": "Marlon Peña",
+    "userEmail": "marlono1naranjo@gmail.com",
+    "registrationDate": "2024-08-29 18:28:50",
+    "companyName": "Inmobiliaria ejemplo"
+  }
+}
+´´´
+
+Plantilla Login email and telegram
+
+´´´
+{
+  "template": "user-login",
+  "sendTo": "marlono1naranjo@gmail.com",
+  "subjectEmail": "Nuevo inicio de sección",
+  "params": {
+    "userName": "Marlon Peña",
+    "userEmail": "marlono1naranjo@gmail.com",
+    "loginDate": "2024-08-29 18:28:50",
+    "companyName": "Inmobiliaria ejemplo"
+  }
+}
+´´´
+
+Plantilla new message email and telegram
+
+´´´
+{
+  "template": "new-message",
+  "sendTo": "marlono1naranjo@gmail.com",
+  "subjectEmail": "Tienes un nuevo mensaje",
+  "params": {
+    "userName": "Marlon Peña",
+    "senderName": "User example",
+    "messageContent": "2024-08-29 18:28:50",
+    "companyName": "Inmobiliaria ejemplo"
+  }
+}
+´´´
+
+Plantilla new request email and telegram
+
+´´´
+{
+  "template": "new-request",
+  "sendTo": "marlono1naranjo@gmail.com",
+  "subjectEmail": "Tienes una solcitud de visita nueva",
+  "params": {
+    "ownerName": "Marlon Peña",
+    "propertyName": "Property example",
+    "applicantName": "applicant example",
+    "applicantEmail": "marlono1naranjo@gmail.com",
+    "applicantMessage": "message example",
+    "requestDate": "2024-08-29 18:28:50",
+    "companyName": "Inmobiliaria ejemplo"
+  }
+}
+´´´
