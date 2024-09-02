@@ -10,10 +10,15 @@ export class NotificationsController {
 
   @Post('/sendEmail')
   @UsePipes(ParamsValidationPipe)
-  async sendEmail(@Body() body: SendEmailDto) {
+  async sendEmail(@Body() body: SendEmailDto){
     return await this.notificationsService.sendEmail(body);
   }
 
+  @Post('/sendMessage')
+  @UsePipes(ParamsValidationPipe)
+  async sendTelegramMessage(@Body() body){
+    return await this.notificationsService.sendTelegramMessage(body);
+  }
 
 }
 

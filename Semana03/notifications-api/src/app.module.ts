@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { EmailsModule } from './emails/emails.module';
-import { TelegramsModule } from './telegrams/telegrams.module';
+import { TelegramsModule } from './telegrams/telegram.module';
 import { TemplatesModule } from './templates/templates.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { ConfigModule } from '@nestjs/config';

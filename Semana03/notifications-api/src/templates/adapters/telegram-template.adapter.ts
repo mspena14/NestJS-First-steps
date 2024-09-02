@@ -4,13 +4,13 @@ import * as path from 'path';
 import * as Handlebars from 'handlebars';
 
 @Injectable()
-export class EmailTemplateAdapter {
+export class TelegramTemplateAdapter {
   private templatesDir: string;
   private templateCache: Map<string, Handlebars.TemplateDelegate> = new Map();
   constructor() {
     this.templatesDir = path.join(
       __dirname,
-      process.env.NODE_ENV === 'production' ? '../templates' : '../../../src/templates/emailTemplates',
+      process.env.NODE_ENV === 'production' ? '../templates' : '../../../src/templates/telegramTemplates',
     );
   }
 

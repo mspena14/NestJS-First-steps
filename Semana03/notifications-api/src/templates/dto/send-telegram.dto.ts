@@ -9,10 +9,7 @@ import {
   import { Template } from '../enums/template.enum';
   import { NewRequestParams, RegisterParams, LoginParams, NewMessageParams, NewPorpertyAvailableParams } from './params.dto';
 
-  export class SendEmailDto {
-    @IsString()
-    @IsNotEmpty()
-    subjectEmail: string;
+  export class SendTelegramMessageDto {
     
     @IsString()
     @IsNotEmpty()
