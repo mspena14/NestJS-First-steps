@@ -16,7 +16,8 @@ export class NotificationsService {
     }
 
     async sendTelegramMessage(body: SendTelegramMessageDto){
-        return await this.telegramService.sendMessage(body);
+        
+        return await this.telegramService.sendMessageService(body)
     }
 
 }

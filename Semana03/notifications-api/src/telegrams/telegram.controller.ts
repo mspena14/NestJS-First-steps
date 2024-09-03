@@ -6,14 +6,6 @@ import { TelegramService } from './telegram.service';
 export class TelegramController {
   constructor(private readonly telegramService: TelegramService) {}
 
-  @Get("start")
-  async create() {
-    await this.telegramService.connect();
-  }
 
-  @Post("send")
-  async findAll(@Body()data ) {
-    await this.telegramService.sendMessage(data);
-  }
 
 }
