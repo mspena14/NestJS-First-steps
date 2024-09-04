@@ -1,11 +1,11 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, OnModuleInit, Scope } from '@nestjs/common';
 import { TelegramClient } from 'telegram';
 import { StringSession } from 'telegram/sessions';
 import input from 'input';
 import { TelegramTemplateAdapter } from 'src/templates/adapters/telegram-template.adapter';
 import { SendTelegramMessageDto } from 'src/templates/dto/send-telegram.dto';
 
-@Injectable()
+@Injectable({ scope: Scope.DEFAULT })
 export class TelegramService implements OnModuleInit {
   private readonly apiId: number = parseInt(process.env.API_ID);
   private readonly hash_id: string = process.env.HASH_ID;
@@ -13,11 +13,13 @@ export class TelegramService implements OnModuleInit {
   private client: TelegramClient;
   private session: StringSession = new StringSession("");
 
-  constructor(private readonly telegramAdapter: TelegramTemplateAdapter) { }
+  constructor(private readonly telegramAdapter: TelegramTemplateAdapter) {
+    console.log(`TelegramService instance created at ${new Date().toISOString()}`);
+  }
 
 
   async onModuleInit(): Promise<void> {
-    await this.connect()
+    await this.connect();
   }
 
   async connect(): Promise<void> {
@@ -35,13 +37,10 @@ export class TelegramService implements OnModuleInit {
 
   async sendMessageService(body: SendTelegramMessageDto) {
 
-
     try {
-
 
       const { template, params, sendTo } = body
       const messageRendered = await this.telegramAdapter.render(template, params);
-      console.log(this.client);
 
       await this.client.sendMessage(sendTo, { message: messageRendered });
     } catch (err: any) {

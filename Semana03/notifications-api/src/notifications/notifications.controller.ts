@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes } from '@ne
 import { NotificationsService } from './notifications.service';
 import { ParamsValidationPipe } from 'src/common/pipes/params-validation.pipe';
 import { SendEmailDto } from 'src/templates/dto/send-email.dto';
+import { SendTelegramMessageDto } from 'src/templates/dto/send-telegram.dto';
 
 
 @Controller('notifications')
@@ -16,7 +17,7 @@ export class NotificationsController {
 
   @Post('/sendMessage')
   @UsePipes(ParamsValidationPipe)
-  async sendTelegramMessage(@Body() body){
+  async sendTelegramMessage(@Body() body: SendTelegramMessageDto){
     return await this.notificationsService.sendTelegramMessage(body);
   }
 

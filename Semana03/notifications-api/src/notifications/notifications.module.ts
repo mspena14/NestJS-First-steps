@@ -7,10 +7,12 @@ import { TemplatesService } from 'src/templates/templates.service';
 import { EmailTemplateAdapter } from 'src/templates/adapters/email-template.adapter';
 import { TelegramService } from 'src/telegrams/telegram.service';
 import { TelegramTemplateAdapter } from 'src/templates/adapters/telegram-template.adapter';
+import { TelegramsModule } from 'src/telegrams/telegram.module';
 
 @Module({
+  imports:[TelegramsModule],
   controllers: [NotificationsController],
-  providers: [NotificationsService, EmailsService, NodemailerProvider, TemplatesService, EmailTemplateAdapter, TelegramService, TelegramTemplateAdapter],
+  providers: [NotificationsService, EmailsService, NodemailerProvider, TemplatesService, EmailTemplateAdapter, TelegramTemplateAdapter],
   exports: [NotificationsService]
 })
 export class NotificationsModule {}
